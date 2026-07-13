@@ -21,6 +21,13 @@ Based on the location and pollutant type, fetch the relevant item from DynamoDB.
 
 Values: Based on the formula in the AQI document, calculate the AQI for each pollutant before storing the data. For the timestamp, use the UTC timestamp from the source data.
 
+## How to process for visualization
+
+1. When item is updated in DynamoDB, trigger Lambda using streams
+2. Fetch latest 3 datapoints, get average AQI of all and update `processed/locations.json` with correct values
+   1. Do consistent writes
+3. Update `processed/<locationId>.json` with historic values of latest 24 hours
+
 ## How to visualize data
 
 To visualize data on a map, we need following data:
