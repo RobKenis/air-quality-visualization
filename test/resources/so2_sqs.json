@@ -1,11 +1,20 @@
 {
-    "Type": "Notification",
-    "MessageId": "1fdc4704-fd82-52ab-b67d-25c8e4157ec8",
-    "TopicArn": "arn:aws:sns:us-east-1:287820185021:openaq-simulator",
-    "Message": "{\"locationId\": 5194, \"location\": \"Saintes\", \"parameter\": \"so2\", \"value\": 159.919994320005, \"date\": {\"utc\": \"2026-07-11 10:15:34.274274\", \"local\": \"2026-07-11 10:15:34.274274+02:00\"}, \"unit\": \"\\u00b5g/m\\u00b3\", \"coordinates\": {\"latitude\": 50.70615, \"longitude\": 4.15817}, \"country\": \"BE\", \"city\": \"Saintes\", \"isMobile\": false, \"isAnalysis\": false, \"entity\": \"ever\", \"sensorType\": \"low-cost\"}",
-    "Timestamp": "2026-07-11T10:13:43.557Z",
-    "SignatureVersion": "1",
-    "Signature": "DrZeiPqmQ7W/x5K+rz3qXgjbcAzDFSZ938gAKLn/HO2AAceWIVAWQ4hERmL+4itYMR7Tm5ZIRzzEMeKGd/mhe1gcFqo0fdkQg3LsJVJCycZmHwVcRE6olZEgGQSZQHhL0HHICk00gIOjzNzG8s/8IXHH/V587nxS6pB7PgCVyc3COM2zYuol2FhUH0R3k95WNOuj0GHf7XSJB6B7JeKG+syKgMyTZQ+mJoZlDQ9ngtAFcnYSArS2C5el9QZL+6/6cmWwpyDiB38Jvko1tUrZPg/eJNA9cBbDgTX2ubBMRyx6cphGJW6RmkMQW6Kn/Zpmyq8XyGp1VlRTBpP9vi8XMQ==",
-    "SigningCertURL": "https://sns.us-east-1.amazonaws.com/SimpleNotificationService-7506a1e35b36ef5a444dd1a8e7cc3ed8.pem",
-    "UnsubscribeURL": "https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:287820185021:openaq-simulator:1b12e0e9-cd68-49f7-b1fd-8c1aa8955b54"
+    "Records": [
+        {
+            "messageId": "fe7859ab-0563-42ad-add2-c94d44852c30",
+            "receiptHandle": "AQEB1/2dNHoGl6hISpFjFnydSefBddeqBvH6ScATv+Q5fi2e9inINPwjWQxaoy2bWD9dbu2jHRM1k9pMSE2+wtQteI+E4b6FdThdaUZ9ysThd4nZ3YFWGllk7aUxD5B33S8v+CxiBAMOq7ownrjA3BobDA2SoWjoTViexhvQJDeFn6AINQVrlJstpj8GcabSmv3aSjyoEz+trf2STrVufc8L3OqV0puIgt5hwhs0vbol3x/MgjW3OD5a7Vky7B2nlEdJyJRYnxzQRkoYA8s4ogRx/PQ1wOnGN2KC7ToJFbtC4abs1WgXM7g2w76MgEdEUno0fasLHZEcZFAW7RVmAH/zPecq9S2Psg+iXH+imHSw/483BK6QvzpmMjJ8qnNMaRK0qReQKz5ZhBVhMek+bRG0Jw==",
+            "body": "{\n    \"Type\": \"Notification\",\n    \"MessageId\": \"1fdc4704-fd82-52ab-b67d-25c8e4157ec8\",\n    \"TopicArn\": \"arn:aws:sns:us-east-1:287820185021:openaq-simulator\",\n    \"Message\": \"{\\\"locationId\\\": 5194, \\\"location\\\": \\\"Saintes\\\", \\\"parameter\\\": \\\"so2\\\", \\\"value\\\": 159.919994320005, \\\"date\\\": {\\\"utc\\\": \\\"2026-07-11 10:15:34.274274\\\", \\\"local\\\": \\\"2026-07-11 10:15:34.274274+02:00\\\"}, \\\"unit\\\": \\\"\\\\u00b5g/m\\\\u00b3\\\", \\\"coordinates\\\": {\\\"latitude\\\": 50.70615, \\\"longitude\\\": 4.15817}, \\\"country\\\": \\\"BE\\\", \\\"city\\\": \\\"Saintes\\\", \\\"isMobile\\\": false, \\\"isAnalysis\\\": false, \\\"entity\\\": \\\"ever\\\", \\\"sensorType\\\": \\\"low-cost\\\"}\",\n    \"Timestamp\": \"2026-07-11T10:13:43.557Z\",\n    \"SignatureVersion\": \"1\",\n    \"Signature\": \"DrZeiPqmQ7W/x5K+rz3qXgjbcAzDFSZ938gAKLn/HO2AAceWIVAWQ4hERmL+4itYMR7Tm5ZIRzzEMeKGd/mhe1gcFqo0fdkQg3LsJVJCycZmHwVcRE6olZEgGQSZQHhL0HHICk00gIOjzNzG8s/8IXHH/V587nxS6pB7PgCVyc3COM2zYuol2FhUH0R3k95WNOuj0GHf7XSJB6B7JeKG+syKgMyTZQ+mJoZlDQ9ngtAFcnYSArS2C5el9QZL+6/6cmWwpyDiB38Jvko1tUrZPg/eJNA9cBbDgTX2ubBMRyx6cphGJW6RmkMQW6Kn/Zpmyq8XyGp1VlRTBpP9vi8XMQ==\",\n    \"SigningCertURL\": \"https://sns.us-east-1.amazonaws.com/SimpleNotificationService-7506a1e35b36ef5a444dd1a8e7cc3ed8.pem\",\n    \"UnsubscribeURL\": \"https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:287820185021:openaq-simulator:1b12e0e9-cd68-49f7-b1fd-8c1aa8955b54\"\n}",
+            "attributes": {
+                "ApproximateReceiveCount": "13",
+                "SentTimestamp": "1783964575443",
+                "SenderId": "AIDAUGA3LPW6U4GWBG3FH",
+                "ApproximateFirstReceiveTimestamp": "1783968379983"
+            },
+            "messageAttributes": {},
+            "md5OfBody": "8947c40ed30bb8a72310f5d4aff8b952",
+            "eventSource": "aws:sqs",
+            "eventSourceARN": "arn:aws:sqs:eu-west-1:287820185021:openaq-rob-test",
+            "awsRegion": "eu-west-1"
+        }
+    ]
 }

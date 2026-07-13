@@ -17,3 +17,10 @@ resource "aws_lambda_function" "ingest" {
   code_sha256   = data.archive_file.ingest.output_base64sha256
   runtime       = "python3.14"
 }
+
+resource "aws_lambda_event_source_mapping" "trigger_ingest" {
+  event_source_arn = "arn:aws:sqs:eu-west-1:287820185021:openaq-rob-test"
+  enabled          = true
+  function_name    = aws_lambda_function.ingest.arn
+  batch_size       = 1
+}
