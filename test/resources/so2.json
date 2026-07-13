@@ -1,0 +1,21 @@
+{
+    "locationId": 5194,
+    "location": "Saintes",
+    "parameter": "so2",
+    "value": 159.919994320005,
+    "date": {
+        "utc": "2026-07-11 10:15:34.274274",
+        "local": "2026-07-11 10:15:34.274274+02:00"
+    },
+    "unit": "\\u00b5g/m\\u00b3",
+    "coordinates": {
+        "latitude": 50.70615,
+        "longitude": 4.15817
+    },
+    "country": "BE",
+    "city": "Saintes",
+    "isMobile": false,
+    "isAnalysis": false,
+    "entity": "ever",
+    "sensorType": "low-cost"
+}
