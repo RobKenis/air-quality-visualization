@@ -4,11 +4,12 @@
 
 1. Read message from SQS
 2. Extract the actual message from the SNS message
-3. Store in S3 on path `openaq/locationId/parameter/YYYY/MM/DD/HHmmss.json` (UTC time)
+3. ~~Store in S3 on path `openaq/locationId/parameter/YYYY/MM/DD/HHmmss.json` (UTC time)~~
+4. Compute the AQI and results based on previous data points and store in DynamoDB
 
 ## How to process data
 
-Use S3 events to trigger a Lambda function when new data is ingested in S3. Based on the S3 path, fetch the data and the 2 previous data points. Data is stored in a rolling window of 7 days.
+Based on the location and pollutant type, fetch the relevant item from DynamoDB. Data is stored in a rolling window of 7 days.
 
 | Field           | Description                                            | Example                                                                          |
 | --------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------- |

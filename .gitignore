@@ -3,3 +3,7 @@
 
 # Terraform
 .terraform/
+dist/
+
+# Python
+.venv/
