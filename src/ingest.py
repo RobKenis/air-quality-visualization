@@ -4,6 +4,8 @@ import math
 
 import boto3
 
+EXPIRATION_PERIOD_IN_SECONDS = 604800
+
 AQI_BREAKPOINTS = {
     "pm25": [
         (0.0, 9.0, 0, 50),
@@ -124,13 +126,11 @@ def calculate_aqi(value_ugm3, pollutant):
     for low, high, aqi_low, aqi_high in AQI_BREAKPOINTS[pollutant]:
         if low <= concentration <= high:
             return round(
-                (aqi_high - aqi_low)
-                / (high - low)
-                * (concentration - low)
-                + aqi_low
+                (aqi_high - aqi_low) / (high - low) * (concentration - low) + aqi_low
             )
 
     return 500
+
 
 def handler(event, context):
     dynamodb = boto3.client("dynamodb")
@@ -144,22 +144,27 @@ def handler(event, context):
         )
 
         timestamp = content.get("date", {}).get("utc")
-        timestamp_epoch = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S.%f").replace(tzinfo=timezone.utc).timestamp()
+        timestamp_epoch = int(
+            datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S.%f")
+            .replace(tzinfo=timezone.utc)
+            .timestamp()
+        )
         dynamodb.put_item(
             TableName="openaq-rob",
             Item={
                 "locationId": {"S": str(content.get("locationId"))},
                 "location": {"S": content.get("location")},
-                "pollutant": {
-                    "S": f"{content.get('parameter')}#{timestamp_epoch}"
-                },
+                "pollutant": {"S": f"{content.get('parameter')}#{timestamp_epoch}"},
                 "timestamp": {"S": timestamp},
                 "longitude": {"S": str(content.get("coordinates").get("longitude"))},
                 "latitude": {"S": str(content.get("coordinates").get("latitude"))},
                 "value": {"N": str(content.get("value"))},
                 "aqi": {
-                    "N": str(calculate_aqi(content.get("value"), content.get("parameter")))
+                    "N": str(
+                        calculate_aqi(content.get("value"), content.get("parameter"))
+                    )
                 },
+                "ttl": {"N": str(timestamp_epoch + EXPIRATION_PERIOD_IN_SECONDS)},
             },
         )
 

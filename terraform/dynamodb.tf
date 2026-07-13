@@ -1,8 +1,8 @@
 resource "aws_dynamodb_table" "this" {
-  name           = local.prefix
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "locationId"
-  range_key      = "pollutant"
+  name         = local.prefix
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "locationId"
+  range_key    = "pollutant"
 
   attribute {
     name = "locationId"
@@ -12,5 +12,10 @@ resource "aws_dynamodb_table" "this" {
   attribute {
     name = "pollutant"
     type = "S"
+  }
+
+  ttl {
+    attribute_name = "ttl"
+    enabled        = true
   }
 }
