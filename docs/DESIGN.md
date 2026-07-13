@@ -8,7 +8,7 @@
 
 ## How to process data
 
-Use S3 events to trigger a Lambda function when new data is ingested in S3. Based on the S3 path, fetch the data and the 2 previous data points.
+Use S3 events to trigger a Lambda function when new data is ingested in S3. Based on the S3 path, fetch the data and the 2 previous data points. Data is stored in a rolling window of 7 days.
 
 | Field           | Description                                            | Example                                                                          |
 | --------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------- |
