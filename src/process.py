@@ -35,7 +35,7 @@ class Measurements:
                 ScanIndexForward=False,
             )
             items = response.get("Items", [])
-            print(f"Found {len(items)} measurements for {pollutant}")
+            # print(f"Found {len(items)} measurements for {pollutant}")
             self.measurements[pollutant] = list(map(self._map, items))
 
     def _map(self, input):
