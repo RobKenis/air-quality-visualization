@@ -27,26 +27,26 @@ class Statistics:
 
 
 def handler(event, context):
+    current = s3_client.get_object(
+        Bucket=BUCKET,
+        Key=KEY,
+    )
+    content = current.get("Body").read().decode("utf-8")
+    locations = json.loads(content)
+
     for record in event.get("Records", []):
         locationId = record.get("dynamodb").get("Keys").get("locationId").get("S")
         print(f"New measurement inserted for {locationId}")
 
         location = Location(
             id=locationId,
-            name=record.get('dynamodb').get('NewImage').get('location').get('S'),
-            longitude=record.get('dynamodb').get('NewImage').get('longitude').get('S'),
-            latitude=record.get('dynamodb').get('NewImage').get('latitude').get('S'),
+            name=record.get("dynamodb").get("NewImage").get("location").get("S"),
+            longitude=record.get("dynamodb").get("NewImage").get("longitude").get("S"),
+            latitude=record.get("dynamodb").get("NewImage").get("latitude").get("S"),
         )
-
-        current = s3_client.get_object(
-            Bucket=BUCKET,
-            Key=KEY,
-        )
-        content = current.get("Body").read().decode("utf-8")
-        locations = json.loads(content)
 
         locations[locationId] = location.__dict__
 
-        s3_client.put_object(
-            Bucket=BUCKET, Key=KEY, Body=json.dumps(locations).encode("utf-8")
-        )
+    s3_client.put_object(
+        Bucket=BUCKET, Key=KEY, Body=json.dumps(locations).encode("utf-8")
+    )

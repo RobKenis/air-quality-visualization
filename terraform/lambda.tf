@@ -37,12 +37,14 @@ resource "aws_cloudwatch_log_group" "process" {
 }
 
 resource "aws_lambda_function" "process" {
-  filename      = data.archive_file.process.output_path
-  function_name = "${local.prefix}-process"
-  role          = local.lambda_role
-  handler       = "process.handler"
-  code_sha256   = data.archive_file.process.output_base64sha256
-  runtime       = "python3.14"
+  filename                       = data.archive_file.process.output_path
+  function_name                  = "${local.prefix}-process"
+  role                           = local.lambda_role
+  handler                        = "process.handler"
+  code_sha256                    = data.archive_file.process.output_base64sha256
+  runtime                        = "python3.14"
+  timeout                        = 30
+  reserved_concurrent_executions = 1
 }
 
 resource "aws_lambda_event_source_mapping" "trigger_process" {
