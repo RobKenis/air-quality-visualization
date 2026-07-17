@@ -116,10 +116,6 @@ function ChartsPanel({ activeLocation, lineChartData, pieChartData, currentAqiCo
                     <div className="chart-card">
                         <h3>Sensor statistics</h3>
                         <div className="sensor-summary">
-                            <div className="sensor-summary-pill">
-                                <span>All pollutants</span>
-                                <strong>{reportsAllPollutants ? "✅ Yes" : "⚠️ No"}</strong>
-                            </div>
                             <table className="sensor-table">
                                 <thead>
                                     <tr>
