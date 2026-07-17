@@ -1,8 +1,6 @@
 import boto3
 import json
 
-from functools import reduce
-
 s3_client = boto3.client("s3")
 dynamodb_client = boto3.client("dynamodb")
 
@@ -13,11 +11,12 @@ POLLUTANTS = ["pm25", "pm10", "o3", "no2", "so2", "co"]
 
 
 class Location:
-    def __init__(self, id: str, name: str, longitude: str, latitude: str):
+    def __init__(self, id: str, name: str, longitude: str, latitude: str, current_air_quality: int):
         self.id = id
         self.name = name
         self.longitude = longitude
         self.latitude = latitude
+        self.current_air_quality = current_air_quality
 
 
 class Measurements:
@@ -45,7 +44,7 @@ class Measurements:
             "aqi": int(input.get("aqi").get("N")),
         }
 
-    def _get_air_quality(self):
+    def get_air_quality(self):
         worst_air_quality = 0
         for pollutant_values in self.measurements.values():
             latest_measurement = next(iter(pollutant_values), {})
@@ -57,7 +56,7 @@ class Measurements:
     def to_dict(self):
         return {
             "measurements": self.measurements,
-            "air_quality": self._get_air_quality(),
+            "air_quality": self.get_air_quality(),
         }
 
 
@@ -73,14 +72,15 @@ def handler(event, context):
         locationId = record.get("dynamodb").get("Keys").get("locationId").get("S")
         print(f"New measurement inserted for {locationId}")
 
+        measurements = Measurements(locationId=locationId)
+
         location = Location(
             id=locationId,
             name=record.get("dynamodb").get("NewImage").get("location").get("S"),
             longitude=record.get("dynamodb").get("NewImage").get("longitude").get("S"),
             latitude=record.get("dynamodb").get("NewImage").get("latitude").get("S"),
+            current_air_quality=measurements.get_air_quality(),
         )
-
-        measurements = Measurements(locationId=location.id)
 
         locations[locationId] = location.__dict__
 

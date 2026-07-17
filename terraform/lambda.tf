@@ -51,4 +51,5 @@ resource "aws_lambda_event_source_mapping" "trigger_process" {
   event_source_arn  = aws_dynamodb_table.this.stream_arn
   function_name     = aws_lambda_function.process.arn
   starting_position = "LATEST"
+  batch_size        = 10
 }
