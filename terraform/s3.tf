@@ -19,3 +19,11 @@ resource "aws_s3_bucket_ownership_controls" "this" {
     object_ownership = "BucketOwnerPreferred"
   }
 }
+
+resource "aws_s3_bucket_website_configuration" "this" {
+  bucket = aws_s3_bucket.this.id
+
+  index_document {
+    suffix = "index.html"
+  }
+}

@@ -45,7 +45,7 @@ function App() {
     const [activeLocation, setActiveLocation] = useState(null);
 
     useEffect(() => {
-        fetch("/api/locations.json")
+        fetch("/processed/locations.json")
             .then((res) => res.json())
             .then((json) => setLocations(json));
     }, []);
@@ -109,7 +109,7 @@ function App() {
 
     const handleMarkerClick = (location) => {
         console.log(location.id);
-        fetch(`/api/${location.id}.json`)
+        fetch(`/processed/${location.id}.json`)
             .then((res) => res.json())
             .then((json) => setActiveLocation(json));
     };

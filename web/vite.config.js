@@ -6,10 +6,9 @@ export default defineConfig({
 
     server: {
     proxy: {
-      "/api": {
-        target: "https://openaq-rob-287820185021-eu-west-1-an.s3.eu-west-1.amazonaws.com/processed/",
+      "/processed": {
+        target: "https://openaq-rob-287820185021-eu-west-1-an.s3.eu-west-1.amazonaws.com/",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
         secure: false,
       },
     },
