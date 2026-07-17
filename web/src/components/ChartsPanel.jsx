@@ -2,6 +2,14 @@ import React from "react";
 import { Line, Pie } from "react-chartjs-2";
 
 const REQUIRED_POLLUTANTS = ["pm25", "pm10", "o3", "no2", "so2", "co"];
+const POLLUTANT_LABELS = {
+    pm25: "Particulate Matter 2.5",
+    pm10: "Particulate Matter 10",
+    o3: "Ozone",
+    no2: "Nitrogen Dioxide",
+    so2: "Sulfur Dioxide",
+    co: "Carbon Monoxide",
+};
 
 const formatFrequency = (hours) => {
     if (!Number.isFinite(hours) || hours <= 0) {
@@ -126,7 +134,11 @@ function ChartsPanel({ activeLocation, lineChartData, pieChartData, currentAqiCo
                                         const frequencyEntry = pollutantFrequencies.find((entry) => entry.pollutant === pollutant);
                                         return (
                                             <tr key={pollutant}>
-                                                <td>{pollutant.toUpperCase()}</td>
+                                                <td>
+                                                    <span title={POLLUTANT_LABELS[pollutant] || pollutant.toUpperCase()}>
+                                                        {pollutant.toUpperCase()}
+                                                    </span>
+                                                </td>
                                                 <td>
                                                     <span className={`status-badge ${isReported ? "status-present" : "status-missing"}`}>
                                                         {isReported ? "Present" : "Missing"}
