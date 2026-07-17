@@ -49,7 +49,7 @@ class Measurements:
         worst_air_quality = 0
         for pollutant_values in self.measurements.values():
             latest_measurement = next(iter(pollutant_values), {})
-            latest_aqi = latest_measurement.get('aqi', 0)
+            latest_aqi = latest_measurement.get("aqi", 0)
             if latest_aqi > worst_air_quality:
                 worst_air_quality = latest_aqi
         return worst_air_quality
@@ -88,8 +88,12 @@ def handler(event, context):
             Bucket=BUCKET,
             Key=f"processed/{location.id}.json",
             Body=json.dumps(measurements.to_dict()).encode("utf-8"),
+            ACL="public-read",
         )
 
     s3_client.put_object(
-        Bucket=BUCKET, Key=KEY, Body=json.dumps(locations).encode("utf-8")
+        Bucket=BUCKET,
+        Key=KEY,
+        ACL="public-read",
+        Body=json.dumps(locations).encode("utf-8"),
     )
