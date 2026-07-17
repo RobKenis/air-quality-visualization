@@ -4,7 +4,7 @@ import math
 
 import boto3
 
-EXPIRATION_PERIOD_IN_SECONDS = 604800
+EXPIRATION_PERIOD_IN_SECONDS = 604800 # 7 days
 
 AQI_BREAKPOINTS = {
     "pm25": [
